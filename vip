@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Soloaway VIP Club</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f1214;
+            --card-bg: #1a1d21;
+            --text-color: #ffffff;
+            --accent-color: #2c3136;
+            --gold-color: #f3ba2f;
+            --hint-color: #8e8e93;
+            --success-color: #00c853;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, system-ui, Roboto, sans-serif;
+            margin: 0;
+            padding: 16px;
+            line-height: 1.6;
+        }
+
+        .page { display: none; animation: fadeIn 0.3s ease; }
+        .page.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .header { text-align: center; padding: 10px 0 20px 0; }
+        .header img { width: 100%; max-width: 280px; border-radius: 12px; }
+
+        .menu-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .menu-item:active { background-color: var(--accent-color); }
+
+        .icon-box { width: 42px; height: 42px; background: rgba(243, 186, 47, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-left: 15px; color: var(--gold-color); font-size: 1.2rem; }
+        
+        .content-box { background: var(--card-bg); border-radius: 18px; padding: 20px; border: 1px solid var(--accent-color); margin-bottom: 20px; }
+        
+        h2 { color: var(--gold-color); font-size: 1.25rem; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        h3 { font-size: 1rem; color: var(--gold-color); margin-bottom: 8px; }
+        p, li { font-size: 0.95rem; color: #e0e0e0; margin-bottom: 10px; }
+        ul { padding-right: 20px; }
+        
+        .step-badge { background: var(--gold-color); color: #000; padding: 2px 8px; border-radius: 6px; font-weight: bold; font-size: 0.8rem; margin-left: 8px; }
+
+        .btn-back {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--accent-color); color: var(--text-color);
+            padding: 10px 16px; border-radius: 10px; margin-bottom: 20px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 500;
+        }
+
+        .link-btn {
+            display: block; background: var(--gold-color); color: black; text-align: center;
+            padding: 14px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 15px; font-size: 1rem;
+        }
+
+        .footer { text-align: center; margin-top: 30px; font-size: 0.8rem; color: var(--hint-color); padding-bottom: 20px; }
+        .note { background: rgba(243, 186, 47, 0.05); border-right: 4px solid var(--gold-color); padding: 12px; border-radius: 4px; font-size: 0.9rem; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <div id="main-page" class="page active">
+        <div class="header">
+            <img src="https://i.ibb.co/m0fXm3C/stake-header.png" alt="Soloaway VIP">
+            <h1 style="font-size: 1.5rem; margin-top: 15px;">Soloaway VIP Club 👑</h1>
+        </div>
+        
+        <div class="menu-item" onclick="showPage('vpn-page')">
+            <div class="icon-box"><i class="fas fa-globe"></i></div>
+            <div style="flex-grow:1; font-weight: 600;">VPN: المساعدة والنصائح</div>
+            <i class="fas fa-chevron-left arrow-icon"></i>
+        </div>
+
+        <div class="menu-item" onclick="showPage('register-page')">
+            <div class="icon-box"><i class="fas fa-user-plus"></i></div>
+            <div style="flex-grow:1; font-weight: 600;">كيف تسجّل حساباً؟</div>
+            <i class="fas fa-chevron-left arrow-icon"></i>
+        </div>
+
+        <div class="menu-item" onclick="showPage('deposit-page')">
+            <div class="icon-box"><i class="fas fa-wallet"></i></div>
+            <div style="flex-grow:1; font-weight: 600;">كيف تقوم بالإيداع على Realz؟</div>
+            <i class="fas fa-chevron-left arrow-icon"></i>
+        </div>
+
+        <div class="menu-item" onclick="showPage('withdraw-page')">
+            <div class="icon-box"><i class="fas fa-money-bill-transfer"></i></div>
+            <div style="flex-grow:1; font-weight: 600;">كيف تقوم بالسحب من Realz؟</div>
+            <i class="fas fa-chevron-left arrow-icon"></i>
+        </div>
+
+        <div class="menu-item" onclick="showPage('vipclub-page')" style="border-color: var(--gold-color);">
+            <div class="icon-box"><i class="fas fa-crown"></i></div>
+            <div style="flex-grow:1; font-weight: 600;">ما هو برنامج SOLO VIPCLUB؟</div>
+            <i class="fas fa-chevron-left arrow-icon"></i>
+        </div>
+
+        <div class="footer">SOLOAWAY VIP CLUB © 2025</div>
+    </div>
+
+    <div id="vpn-page" class="page">
+        <button class="btn-back" onclick="showPage('main-page')"><i class="fas fa-arrow-right"></i> رجوع</button>
+        <div class="content-box">
+            <h2><i class="fas fa-shield-alt"></i> دليل الـ VPN</h2>
+            <p><span class="step-badge">1</span> **نزّل تطبيق VPN:** اختر برنامجاً موثوقاً مثل Proton VPN أو Windscribe أو TunnelBear.</p>
+            <p><span class="step-badge">2</span> **ثبّت وافتح:** بعد التثبيت، افتح التطبيق على جهازك.</p>
+            <p><span class="step-badge">3</span> **سجّل الدخول:** بعض التطبيقات تحتاج حساباً وبعضها يعمل مباشرة.</p>
+            <p><span class="step-badge">4</span> **اتصل:** اختر دولة أوروبية واضغط زر Connect.</p>
+            <p><span class="step-badge">5</span> **خلص ✅:** اتصالك الآن مشفر وتصفحك آمن.</p>
+        </div>
+    </div>
+
+    <div id="register-page" class="page">
+        <button class="btn-back" onclick="showPage('main-page')"><i class="fas fa-arrow-right"></i> رجوع</button>
+        <div class="content-box">
+            <h2><i class="fas fa-id-card"></i> طريقة التسجيل</h2>
+            <h3>الخطوة 1️⃣</h3>
+            <p>ادخل على الموقع واضغط على Sign Up:</p>
+            <a href="https://rltz.fynkelto.com/?mid=344977_1992578" target="_blank" class="link-btn">رابط التسجيل في Realz 🔗</a>
+            <h3>الخطوة 2️⃣</h3>
+            <p>أكمل بياناتك (الإيميل، كلمة السر، اسم المستخدم).</p>
+            <h3>الخطوة 3️⃣</h3>
+            <p>فعّل حسابك عبر الرابط الذي سيصلك في الإيميل.</p>
+            <div class="note" style="margin-top: 15px;">
+                🎉 مبروك! صرت عضواً في SOLO VIP CLUB. تقدر تشتري تذاكر مجانية وتدخل سحوبات أسبوعية!
+            </div>
+        </div>
+    </div>
+
+    <div id="deposit-page" class="page">
+        <button class="btn-back" onclick="showPage('main-page')"><i class="fas fa-arrow-right"></i> رجوع</button>
+        <div class="content-box">
+            <h2><i class="fas fa-coins"></i> الإيداع في Realz</h2>
+            <p><span class="step-badge">1</span> **دخول الحساب:** سجل دخولك واضغط على "المحفظة" في الأعلى.</p>
+            <p><span class="step-badge">2</span> **طريقة الإيداع:** اختر العملات الرقمية (Crypto) أو بطاقات الائتمان (Visa/MasterCard).</p>
+            <p><span class="step-badge">3</span> **التأكيد:** ستضاف الأموال مباشرة لحسابك.</p>
+            <p class="note">⚠️ ملاحظة: قد تختلف مدة وصول الأموال حسب الطريقة المستخدمة.</p>
+        </div>
+    </div>
+
+    <div id="withdraw-page" class="page">
+        <button class="btn-back" onclick="showPage('main-page')"><i class="fas fa-arrow-right"></i> رجوع</button>
+        <div class="content-box">
+            <h2><i class="fas fa-hand-holding-usd"></i> سحب الأموال</h2>
+            <p><span class="step-badge">1</span> **افتح المحفظة:** من حسابك، اضغط على "المحفظة" ثم اختر "سحب".</p>
+            <p><span class="step-badge">2</span> **البيانات:** حدد المبلغ واكتب عنوان محفظتك الرقمية (BTC, ETH, LTC).</p>
+            <p><span class="step-badge">3</span> **تأكيد:** راجع البيانات جيداً ثم اضغط تأكيد.</p>
+            <p class="note">✅ أموالك الآن في الطريق!</p>
+        </div>
+    </div>
+
+    <div id="vipclub-page" class="page">
+        <button class="btn-back" onclick="showPage('main-page')"><i class="fas fa-arrow-right"></i> رجوع</button>
+        <div class="content-box">
+            <h2 style="color: var(--gold-color);"><i class="fas fa-star"></i> SOLO VIP CLUB</h2>
+            <p style="font-weight: bold; font-size: 1.1rem;">🚀 انضم لأكبر نادي VIP:</p>
+            <ul>
+                <li>اكسب 50 نقطة كل 5 دقائق من مشاهدة البث.</li>
+                <li>احصل على 10,000 نقطة مكافأة ترحيبية عند الانضمام.</li>
+            </ul>
+            <p style="font-weight: bold; font-size: 1.1rem;">💎 تسوق كـ VIP:</p>
+            <ul>
+                <li>استبدل نقاطك بتذاكر مجانية بقيمة $10 و $25.</li>
+                <li>جوائز كبرى قادمة: iPhones، تذاكر دبي، هدايا فاخرة!</li>
+                <li>اشتراك شهري $25 يفتح لك مكافآت أضخم.</li>
+                <li>سحوبات أسبوعية بقيمة $50.</li>
+            </ul>
+            <p class="note" style="border-right-color: var(--success-color);">
+                ✨ هذا ليس مجرد نظام نقاط، بل هو بوابتك للرفاهية. شاهد، اكسب، وعش تجربة الـ VIP!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const tele = window.Telegram.WebApp;
+        tele.ready();
+        tele.expand();
+        tele.setHeaderColor('#0f1214');
+
+        function showPage(pageId) {
+            // إخفاء كل الصفحات
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // إظهار الصفحة المطلوبة
+            document.getElementById(pageId).classList.add('active');
+            // التمرير للأعلى عند تغيير الصفحة
+            window.scrollTo(0, 0);
+        }
+    </div>
+</body>
+</html>
